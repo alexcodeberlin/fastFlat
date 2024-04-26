@@ -1,0 +1,77 @@
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    Username VARCHAR(50) NOT NULL UNIQUE,
+    PasswordHash VARCHAR(255) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Phone VARCHAR(20),
+    RegistrationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE Properties (
+    PropertyID INT PRIMARY KEY AUTO_INCREMENT,
+    Title VARCHAR(100) NOT NULL,
+    Description TEXT,
+    Address VARCHAR(255) NOT NULL,
+    City VARCHAR(100) NOT NULL,
+    CityDescription TEXT,
+    State VARCHAR(50),
+    ZipCode VARCHAR(20),
+    PriceForMonth DECIMAL(10, 2) NOT NULL,
+    Bedrooms INT,
+    Bathrooms INT,
+    Area DECIMAL(10, 2),
+    Type ENUM('Flat', 'OneRoomFlat', 'SharedFlat', 'House') NOT NULL,
+    StartTime DATETIME NOT NULL,
+    EndTime DATETIME NOT NULL,
+    AgentID INT,
+    Latitude DECIMAL(10, 6), -- Latitude coordinate
+    Longitude DECIMAL(10, 6), -- Longitude coordinate
+    FOREIGN KEY (AgentID) REFERENCES Users(UserID)
+);
+CREATE TABLE PropertyPhotos (
+    PhotoID INT PRIMARY KEY AUTO_INCREMENT,
+    PropertyID INT,
+    PhotoURL VARCHAR(255),
+    FOREIGN KEY (PropertyID) REFERENCES Properties(PropertyID)
+);
+CREATE TABLE UserFavorites (
+    FavoriteID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT,
+    PropertyID INT,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (PropertyID) REFERENCES Properties(PropertyID)
+);
+CREATE TABLE Messages (
+    MessageID INT PRIMARY KEY AUTO_INCREMENT,
+    SenderID INT NOT NULL,
+    ReceiverID INT NOT NULL,
+    MessageText TEXT NOT NULL,
+    SendDateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (SenderID) REFERENCES Users(UserID),
+    FOREIGN KEY (ReceiverID) REFERENCES Users(UserID)
+);
+CREATE TABLE Request (
+	RenterID INT PRIMARY KEY AUTO_INCREMENT,
+	UserID INT,
+	Description VARCHAR(512),
+	PreferedCity VARCHAR(60),
+	PreferedFederalstate VARCHAR(60),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+	);
+CREATE TABLE Bookings (
+    BookingID INT PRIMARY KEY AUTO_INCREMENT,
+    UserID INT,
+    AgentID INT,
+    PropertyID INT,
+    BookingDateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (AgentID) REFERENCES Users(UserID),
+    FOREIGN KEY (PropertyID) REFERENCES Properties(PropertyID)
+);
+
+CREATE INDEX idx_city ON Properties(City);
+CREATE INDEX idx_StartTime ON Properties(StartTime);
+CREATE INDEX idx_EndTime ON Properties(EndTime);
+
+
