@@ -10,6 +10,9 @@ Setup and run the web application and database<br>
 5. Open browser and type in the link localhost:8080 to open the web application<br><br>
 You can register and login. 
 You can look for a flat or flat requests:<br>
+![888](https://github.com/alexcodeberlin/fastFlat/assets/159266599/7add1bc1-e283-45b8-a482-d260d10657ab)
+![999](https://github.com/alexcodeberlin/fastFlat/assets/159266599/86d649e1-69a3-4665-9d4b-c63bdec6b1a4)
+![555555](https://github.com/alexcodeberlin/fastFlat/assets/159266599/dd9cc7e3-b65e-4d7c-9618-1bfc52a10c8f)
 
 
 
