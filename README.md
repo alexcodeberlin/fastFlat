@@ -7,7 +7,7 @@ Setup and run the web application and database<br>
 2. Open xampp controller and start a local server<br>
 3. Open localhost/phpmyadmin in browser<br>
 4. Open database.txt in the repository and copy the create table statements separately and also the indexes into localhost/phpmyadmin in the sql console<br>
-5. Open browser and type in the link localhost:8080 to open the web application<br>
+5. Open browser and type in the link localhost:8080 to open the web application<br><br>
 
 You can look for a flat or flat requests:<br>
 ![888](https://github.com/alexcodeberlin/fastFlat/assets/159266599/f2fcf23d-a9bd-41bd-b73b-8c6dba910964)
