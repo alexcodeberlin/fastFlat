@@ -1,6 +1,13 @@
 # fastFlat - Web application with mysql Database 
-
+<br>
 This is a Web application for people who are looking for flats!
+<br>
+Setup and run the web application and database
+1. Download xxamp and clone the repository in the xxamp/htdocs file
+2. Open xampp controller and start a local server
+3. Open localhost/phpmyadmin in browser
+4. Open database.txt in the repository and copy the create table statements separately and also the indexes into localhost/phpmyadmin in the sql console
+5. Open browser and type in the link localhost:8080 to open the web application
 
 You can look for a flat or flat requests:<br>
 ![888](https://github.com/alexcodeberlin/fastFlat/assets/159266599/f2fcf23d-a9bd-41bd-b73b-8c6dba910964)
@@ -8,12 +15,7 @@ You can look for a flat or flat requests:<br>
 ![555555](https://github.com/alexcodeberlin/fastFlat/assets/159266599/1e959c69-06b1-438e-93e3-7afc6f924a65)
 
 
-Setup and run the web application and database
-1. Download xxamp and clone the repository in the xxamp/htdocs file
-2. Open xampp controller and start a local server
-3. Open localhost/phpmyadmin in browser
-4. Open database.txt in the repository and copy the create table statements separately and also the indexes into localhost/phpmyadmin in the sql console
-5. Open browser and type in the link localhost:8080 to open the web application
+
    
 
 #    Database ERM:
