@@ -2,8 +2,11 @@
 
 This is a Web application for people who are looking for flats!
 
+You can look for a flat or flat requests:<br>
 ![888](https://github.com/alexcodeberlin/fastFlat/assets/159266599/f2fcf23d-a9bd-41bd-b73b-8c6dba910964)
 ![999](https://github.com/alexcodeberlin/fastFlat/assets/159266599/6f8cf133-19b0-4e8d-964f-2cf82d95d2f5)
+![555555](https://github.com/alexcodeberlin/fastFlat/assets/159266599/1e959c69-06b1-438e-93e3-7afc6f924a65)
+
 
 Setup and run the web application and database
 1. Download xxamp and clone the repository in the xxamp/htdocs file
