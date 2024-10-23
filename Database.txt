@@ -73,5 +73,5 @@ CREATE TABLE Bookings (
 CREATE INDEX idx_city ON Properties(City);
 CREATE INDEX idx_StartTime ON Properties(StartTime);
 CREATE INDEX idx_EndTime ON Properties(EndTime);
-
+first commit;
 
