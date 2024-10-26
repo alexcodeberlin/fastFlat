@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,6 +40,8 @@ echo $_SESSION['username']; ?>
         if ($result->num_rows > 0) {
             // Output data of the property
             $row = $result->fetch_assoc();
+			            echo "<h1>Property Details</h1>";
+
             echo "<h1>" . $row['Title'] . "</h1>";
             echo "<img src='" . $row['PhotoURL'] . "' alt='Property Image'>";
             echo "<p>Description: " . $row['Description'] . "</p>";
