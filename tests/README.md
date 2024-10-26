@@ -46,7 +46,7 @@ This will ensure that PHPUnit is available for testing your PHP code within the 
 
 To install Guzzle, run the following command in your project directory:
 
-```bash
+``bash
 composer require guzzlehttp/guzzle
 
 
