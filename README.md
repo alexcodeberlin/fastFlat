@@ -5,11 +5,10 @@ FastFlat is a web-based real estate platform allowing users to search, favorite 
 ## Features
 
 - **User Registration and Login**: Users can register for an account and log in to save their preferences.
-- **Property Search**: Search functionality allows users to filter properties by city, type and move-in date.
-- **Favorite Properties**: Users can mark properties as favorites, which are saved in their profile for future access.
-- **User-Property Interaction**: Users can contact agents through the platform.
-- **User-Create flat request**: User can create a flat request for flat owners.
-
+- **Property Search**: The application includes a search functionality that allows users to filter properties based on various criteria, such as city, property type (e.g., flat, house) and move-in date. This makes it easy for users to find properties that match their specific needs and preferences.
+- **Favorite Properties**: Users can mark properties as favorites with a single click, making it simple to keep track of listings they are interested in. These favorites are stored in the user's profile, allowing for quick access during future visits.
+- **User-Property Interaction**: Users can send messages or inquiries about specific properties, making the process of finding and securing a rental more efficient.
+- **User-Create flat request**:  Users can submit requests for flats that meet their requirements. This feature allows potential renters to specify their needs (e.g., location, budget, amenities) and enables property owners to respond with suitable options. This interaction enhances the chances of matching users with ideal properties.
 ## Getting Started
 
 ### Prerequisites
@@ -41,10 +40,6 @@ FastFlat is a web-based real estate platform allowing users to search, favorite 
 
 ### 4 Install Dependencies
 
-- Navigate to the project directory and install the necessary dependencies using Composer:
-  ```bash
-  composer install
-  
   ## Installing PHPUnit via Composer (for testing)
 
 To install PHPUnit for your project, follow these steps:
@@ -90,7 +85,7 @@ This will ensure that PHPUnit is available for testing your PHP code within the 
 
 ## Code Structure
 
-- **`search.php`**: The main script handling property search functionality.
+
 
 ### ERM:
 
