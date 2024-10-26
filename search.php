@@ -84,50 +84,58 @@
             }
         }
 
-        // Get city and property type from the form submission
-        $city = $_GET['city'];
-        $propertyType = $_GET['property-type'];
-		$movinDate = $_GET['property-dates'];
-		$latestMoveinDate = $_GET['property-dates-latest'];
+        // Check if all required fields are set in $_GET
+        $city = isset($_GET['city']) ? $_GET['city'] : null;
+        $propertyType = isset($_GET['property-type']) ? $_GET['property-type'] : null;
+        $movinDate = isset($_GET['property-dates']) ? $_GET['property-dates'] : null;
+        $latestMoveinDate = isset($_GET['property-dates-latest']) ? $_GET['property-dates-latest'] : null;
 
-        // Prepare SQL query to select properties based on city and property type
-        $sql = "SELECT Properties.*, PropertyPhotos.PhotoURL 
-                FROM Properties 
-                LEFT JOIN PropertyPhotos ON Properties.PropertyID = PropertyPhotos.PropertyID 
-                WHERE Properties.City = '$city' AND Properties.Type = '$propertyType'
-				AND '$movinDate' BETWEEN Properties.StartTime AND Properties.EndTime
-				AND '$latestMoveinDate' BETWEEN Properties.StartTime AND Properties.EndTime
-                GROUP BY Properties.StartTime";
+        // Ensure that all necessary parameters are provided before executing the query
+        if ($city && $propertyType && $movinDate && $latestMoveinDate) {
+            // Prepare SQL query to select properties based on city and property type
+            $sql = "SELECT Properties.*, PropertyPhotos.PhotoURL 
+                    FROM Properties 
+                    LEFT JOIN PropertyPhotos ON Properties.PropertyID = PropertyPhotos.PropertyID 
+                    WHERE Properties.City = '$city' AND Properties.Type = '$propertyType'
+                    AND '$movinDate' BETWEEN Properties.StartTime AND Properties.EndTime
+                    AND '$latestMoveinDate' BETWEEN Properties.StartTime AND Properties.EndTime
+                    GROUP BY Properties.StartTime";
 
-        $result = $conn->query($sql);
+            $result = $conn->query($sql);
 
-        // Check if properties were found
-        if ($result->num_rows > 0) {
-            // Output data of each row
-            while($row = $result->fetch_assoc()) {
-                // Display property details
-                echo "<div class='property-container'>";
-                // Display property photo on the left side
-                echo "<img src='/website/images/firstimage.jpg' alt='Property Image' width='200px' height='200px'>";
-                // Property details on the right side
-                echo "<div class='property-details'>";
-                echo "<h2>" . $row['Title'] . "</h2>";
-                echo "<p>" . $row['Description'] . "</p>";
-                echo "<p>Price per Month: $" . $row['PriceForMonth'] . "</p>";
-                echo "<form action='' method='post'>";
-                echo "<input type='hidden' name='propertyID' value='" . $row['PropertyID'] . "'>";
-                if(isset($_SESSION['username'])) {
-                    echo "<button type='submit' name='add_to_favorites' class='btn-add-to-favorites'>Add to Favorites</button>";
-                } else {
-                    echo "<span>Please log in to add properties to favorites.</span>";
+            // Check if properties were found
+            if ($result->num_rows > 0) {
+				    echo "<p>Found properties</p>";
+
+                // Output data of each row
+                while($row = $result->fetch_assoc()) {
+                    // Display property details
+                    echo "<div class='property-container'>";
+                    // Display property photo on the left side
+                    echo "<img src='/website/images/firstimage.jpg' alt='Property Image' width='200px' height='200px'>";
+                    // Property details on the right side
+                    echo "<div class='property-details'>";
+                    echo "<h2>" . $row['Title'] . "</h2>";
+                    echo "<p>" . $row['Description'] . "</p>";
+                    echo "<p>Price per Month: $" . $row['PriceForMonth'] . "</p>";
+                    echo "<form action='' method='post'>";
+                    echo "<input type='hidden' name='propertyID' value='" . $row['PropertyID'] . "'>";
+                    if(isset($_SESSION['username'])) {
+                        echo "<button type='submit' name='add_to_favorites' class='btn-add-to-favorites'>Add to Favorites</button>";
+                    } else {
+                        echo "<span>Please log in to add properties to favorites.</span>";
+                    }
+                    echo "</form>";
+                    echo "<a href='property_details.php?propertyID=" . $row['PropertyID'] . "'>View Details</a>";
+                    echo "</div>";
+                    echo "</div>";
                 }
-                echo "</form>";
-                echo "<a href='property_details.php?propertyID=" . $row['PropertyID'] . "'>View Details</a>";
-                echo "</div>";
-                echo "</div>";
+            } else {
+                echo "<p>No properties found.</p>";
             }
         } else {
-            echo "<p>No properties found.</p>";
+            // Handle case when necessary parameters are missing
+            echo "<p>Please provide valid search criteria (city, property type, and move-in dates).</p>";
         }
 
         // Check if add to favorites button is clicked
