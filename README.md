@@ -1,6 +1,6 @@
 # FastFlat
 
-FastFlat is a web-based real estate platform allowing users to search, favorite, and interact with property listings. This project is designed with PHP and MySQL, using XAMPP for local development and the Doctrine ORM for database management.
+FastFlat is a web-based real estate platform allowing users to search, favorite and interact with property listings. This project is designed with PHP and MySQL, using XAMPP for local development and the Doctrine ORM for database management.
 
 ## Features
 
@@ -14,7 +14,7 @@ FastFlat is a web-based real estate platform allowing users to search, favorite,
 
 ### Prerequisites
 
-- **XAMPP**: Install XAMPP for an Apache server, MySQL, and PHP support.
+- **XAMPP**: Install XAMPP for an Apache server, MySQL and PHP support.
 - **Composer**: For managing dependencies.
 
 ### Installation
@@ -29,8 +29,7 @@ FastFlat is a web-based real estate platform allowing users to search, favorite,
 2. Start the Apache and MySQL modules:
    - Click the "Start" button next to **Apache** to run the web server on port 80.
    - Click the "Start" button next to **MySQL** to run the MySQL server on port 3306.
-3. If there are any port conflicts, ensure Apache is set to port 80 (or an available port) and MySQL to port 3306.
-4. To confirm both servers are running:
+3. To confirm both servers are running:
    - Open a browser and visit `http://localhost`. If successful you should see the XAMPP dashboard.
 
 ### 3 Database Setup
@@ -38,7 +37,7 @@ FastFlat is a web-based real estate platform allowing users to search, favorite,
 1. Open phpMyAdmin by going to `http://localhost/phpmyadmin`.
 2. Create a new database named `property`.
 3. Import the SQL file located in the `database` folder of the project to set up the initial structure.
-4. For testing: Create a new database named `test_property`
+4. For testing: Create a new database named `test_property` and do the same.
 
 ### 4 Install Dependencies
 
