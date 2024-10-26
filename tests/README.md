@@ -112,8 +112,7 @@ Make sure you installed Guzzle.
 
 
 
-To run the tests go to the root directory of you project and use the following command:
-```bash
+
 
 
 
