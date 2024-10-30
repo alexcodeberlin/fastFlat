@@ -6,43 +6,8 @@
     <title>Property Search</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Custom CSS -->
-    <style>
-        body {
-            background-color: #f0f0f0;
-        }
-        .container {
-            margin-top: 50px;
-        }
-        .property-container {
-            display: flex;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .property-container img {
-            border-radius: 10px;
-            margin-right: 20px;
-        }
-        .property-details {
-            flex: 1;
-        }
-        .btn-add-to-favorites {
-            background-color: #ffc107;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
-        }
-        .btn-add-to-favorites:hover {
-            background-color: #ff9800;
-        }
-    </style>
+    <!-- CSS FILE -->
+    <link rel="stylesheet" href="css/style_search.css">
 </head>
 <body>
     <div class="container">
