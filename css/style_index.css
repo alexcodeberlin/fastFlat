@@ -1,0 +1,54 @@
+body {
+    background-color: #f5f5f5; /* Light gray background */
+}
+.navbar {
+    background-color: #fff; /* White navbar */
+}
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: #333; /* Dark gray text */
+}
+.navbar-brand:hover,
+.navbar-nav .nav-link:hover {
+    color: #ff6600; /* Orange accent color on hover */
+}
+.content {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff; /* White content background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+    text-align: center; /* Center align content */
+}
+.search-container {
+    background-color: #fff; /* White background */
+    padding: 20px;
+    margin-top:10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+    display: inline-block; /* Display as inline-block */
+}
+h1, h2 {
+    color: #333; /* Dark gray headings */
+}
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff; /* White background */
+    border-top: 1px solid #ddd; /* Light gray border */
+}
+.custom-dropdown {
+    background-color: #fff; /* White background */
+    color: #333; /* Dark gray text color */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Padding */
+    width: 100%; /* Full width */
+    
+    margin-bottom: 10px; /* Spacing between dropdowns */
+}
+.custom-dropdown option {
+    background-color: #fff; /* White background */
+    color: #333; /* Dark gray text color */
+}
