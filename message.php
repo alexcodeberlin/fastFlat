@@ -50,59 +50,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['reply_message'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Messages</title>
-<style>
-    /* Your CSS styles here */
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Messages</title>
 </head>
 <body>
 
-<div class="container">
-    <h2>Sent Messages</h2>
-    <?php
-    if ($sentMessagesResult->num_rows > 0) {
-        while ($row = $sentMessagesResult->fetch_assoc()) {
-            echo "<p><strong>Message Sent: </strong>" . $row['SendDateTime'] . "</p>";
-            echo "<p>" . $row['MessageText'] . "</p>";
-            // Display reply form
-            echo "<form method='post'>";
-            echo "<input type='hidden' name='messageID' value='" . $row['MessageID'] . "'>";
-            echo "<input type='hidden' name='receiverID' value='" . $row['ReceiverID'] . "'>";
-            echo "<textarea name='replyMessage' placeholder='Reply to this message'></textarea>";
-            echo "<button type='submit' name='reply_message'>Reply</button>";
-            echo "</form>";
+    <div class="container">
+        <h2>Sent Messages</h2>
+        <?php
+        if ($sentMessagesResult->num_rows > 0) {
+            while ($row = $sentMessagesResult->fetch_assoc()) {
+                echo "<p><strong>Message Sent: </strong>" . $row['SendDateTime'] . "</p>";
+                echo "<p>" . $row['MessageText'] . "</p>";
+                // Display reply form
+                echo "<form method='post'>";
+                echo "<input type='hidden' name='messageID' value='" . $row['MessageID'] . "'>";
+                echo "<input type='hidden' name='receiverID' value='" . $row['ReceiverID'] . "'>";
+                echo "<textarea name='replyMessage' placeholder='Reply to this message'></textarea>";
+                echo "<button type='submit' name='reply_message'>Reply</button>";
+                echo "</form>";
+            }
+        } else {
+            echo "<p>No sent messages found.</p>";
         }
-    } else {
-        echo "<p>No sent messages found.</p>";
-    }
-    ?>
+        ?>
 
-    <h2>Received Messages</h2>
-    <?php
-    if ($receivedMessagesResult->num_rows > 0) {
-        while ($row = $receivedMessagesResult->fetch_assoc()) {
-            echo "<p><strong>Message Received: </strong>" . $row['SendDateTime'] . "</p>";
-            echo "<p>" . $row['MessageText'] . "</p>";
-            // Display reply form
-            echo "<form method='post'>";
-            echo "<input type='hidden' name='messageID' value='" . $row['MessageID'] . "'>";
-            echo "<input type='hidden' name='receiverID' value='" . $row['SenderID'] . "'>";
-            echo "<textarea name='replyMessage' placeholder='Reply to this message'></textarea>";
-            echo "<button type='submit' name='reply_message'>Reply</button>";
-            echo "</form>";
+        <h2>Received Messages</h2>
+        <?php
+        if ($receivedMessagesResult->num_rows > 0) {
+            while ($row = $receivedMessagesResult->fetch_assoc()) {
+                echo "<p><strong>Message Received: </strong>" . $row['SendDateTime'] . "</p>";
+                echo "<p>" . $row['MessageText'] . "</p>";
+                // Display reply form
+                echo "<form method='post'>";
+                echo "<input type='hidden' name='messageID' value='" . $row['MessageID'] . "'>";
+                echo "<input type='hidden' name='receiverID' value='" . $row['SenderID'] . "'>";
+                echo "<textarea name='replyMessage' placeholder='Reply to this message'></textarea>";
+                echo "<button type='submit' name='reply_message'>Reply</button>";
+                echo "</form>";
+            }
+        } else {
+            echo "<p>No received messages found.</p>";
         }
-    } else {
-        echo "<p>No received messages found.</p>";
-    }
-    ?>
-</div>
-
+        ?>
+    </div>
 </body>
 </html>
 
 <?php
-// Close database connection
-$conn->close();
+    // Close database connection
+    $conn->close();
 ?>
