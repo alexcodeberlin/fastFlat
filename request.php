@@ -40,40 +40,8 @@ $conn->close();
     <title>Requests</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa; /* Light gray background */
-        }
-        .container {
-            margin-top: 50px;
-			
-        }
-        .card {
-            margin-bottom: 20px;
-            cursor: pointer;
-			
-        }
-        .card:hover {
-            transform: scale(1.05);
-        }
-        .card-body {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        .card-title {
-            font-size: 20px;
-            color: #333;
-            font-weight: bold;
-        }
-        .card-text {
-            color: #666;
-        }.row{
-			
-		}
-    </style>
+    <link rel="stylesheet" href="css/style_request.css">
+
 </head>
 <body>
 <div class="container">
