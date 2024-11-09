@@ -50,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </head>
 <body>
+<!-- form for typing in editing information -->
     <div class="container">
         <h3>Welcome, <?php echo $_SESSION['username']; ?></h3>
         <h2>Edit Profile</h2>
