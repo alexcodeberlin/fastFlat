@@ -84,7 +84,10 @@ This will ensure that PHPUnit is available for testing your PHP code within the 
 2. Open your web browser and navigate to `http://localhost/fastFlat` to access the application.
 
 ## Clean Code principles 
-The projects code follows proper and consistent naming conventions. It doesn't need a lot of comments because it is self documenting. The names for variables and functions are Intention_Revealing. My functions have sensefull argument names and they are easy to test. I use error handling with Clear Error identification and messages.
+1. The projects code follows proper and consistent naming conventions. It doesn't need a lot of comments because it is self documenting. The names for variables and functions are Intention revealing. My functions have sensefull argument names and they are easy to test. 
+2. I use error handling with Clear Error identification and messages. 
+3. All nested if conditions are removed.
+3. The app is secure against sql injection.
 ### ERM:
 
    Database ERM:
