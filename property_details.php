@@ -1,117 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Property Details</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Properties</title>
+    <link rel="stylesheet" href="css/style_favourite.css">
 </head>
 <body>
-    <div class="container">
-        <h3>Welcome, <?php session_start();
-        // Check if the user is not logged in, redirect to login page
-        if (!isset($_SESSION['username'])) {
-            header("Location: login.php");
-            exit();
-        }
-        echo $_SESSION['username']; ?>
+<?php
+include 'connect.php'; // Include database connection file
+session_start(); // Start or resume session
+
+// Verify user session
+if (!isset($_SESSION['username'])) {
+    echo "Please log in to view favorite properties.";
+    exit();
+}
+
+$username = $_SESSION['username'];
+
+// Retrieve UserID for the logged-in user
+$userIDQuery = "SELECT UserID FROM Users WHERE Username = '$username'";
+$userIDResult = $conn->query($userIDQuery);
+
+if ($userIDResult->num_rows === 0) {
+    echo "User not found.";
+    exit();
+}
+
+$userID = $userIDResult->fetch_assoc()['UserID'];
+
+// Retrieve user's favorite properties
+$sql = "
+    SELECT Properties.*, PropertyPhotos.PhotoURL 
+    FROM Properties 
+    LEFT JOIN PropertyPhotos ON Properties.PropertyID = PropertyPhotos.PropertyID 
+    INNER JOIN UserFavorites ON Properties.PropertyID = UserFavorites.PropertyID 
+    WHERE UserFavorites.UserID = $userID
+";
+$result = $conn->query($sql);
+
+if ($result->num_rows === 0) {
+    echo "No favorite properties found.";
+} else {
+    // Display favorite properties
+    while ($row = $result->fetch_assoc()) {
+        echo "<div class='property-container'>";
+        echo "<img src='" . htmlspecialchars($row['PhotoURL']) . "' alt='Property Image' width='100' height='100'>";
+        echo "<h2>" . htmlspecialchars($row['Title']) . "</h2>";
+        echo "<p>" . htmlspecialchars($row['Description']) . "</p>";
+        echo "<p>Price per Month: $" . htmlspecialchars($row['PriceForMonth']) . "</p>";
+        echo "<form action='' method='post'>";
+        echo "<input type='hidden' name='propertyID' value='" . htmlspecialchars($row['PropertyID']) . "'>";
+        echo "<button type='submit' name='remove_from_favorites'>Remove from Favorites</button>";
+        echo "</form>";
+        echo "</div>";
+    }
+}
+
+// Handle property removal from favorites
+if (isset($_POST['remove_from_favorites'])) {
+    $propertyID = (int)$_POST['propertyID'];
+    $removeQuery = "DELETE FROM UserFavorites WHERE UserID = $userID AND PropertyID = $propertyID";
     
-        <?php
-            include 'connect.php'; // Include database connection file
-            // Show All information which is in the database for the clicked property
-            // Get PropertyID from URL query parameter
-            if (isset($_GET['propertyID'])) {
-                $propertyID = $_GET['propertyID'];
-                
-                // Prepare SQL query to select detailed information for the specified property
-                $sql = "SELECT Properties.*, PropertyPhotos.PhotoURL 
-                        FROM Properties 
-                        LEFT JOIN PropertyPhotos ON Properties.PropertyID = PropertyPhotos.PropertyID 
-                        WHERE Properties.PropertyID = $propertyID";
-                $result = $conn->query($sql);
+    if ($conn->query($removeQuery)) {
+        echo "Property removed from favorites successfully.";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+}
 
-                // Check if property was found
-                if ($result->num_rows > 0) {
-                    // Output data of the property
-                    $row = $result->fetch_assoc();
-                                echo "<h1>Property Details</h1>";
-                    // add the propertyinformation from the query on the graphical user interface
-                    echo "<h1>" . $row['Title'] . "</h1>";
-                    echo "<img src='" . $row['PhotoURL'] . "' alt='Property Image'>";
-                    echo "<p>Description: " . $row['Description'] . "</p>";
-                    echo "<p>Address: " . $row['Address'] . "</p>";
-                    echo "<p>City: " . $row['City'] . "</p>";
-                    echo "<p>City Description: " . $row['CityDescription'] . "</p>"; // Added City Description
-                    echo "<p>State: " . $row['State'] . "</p>"; // Added State
-                    echo "<p>ZipCode: " . $row['ZipCode'] . "</p>"; // Added ZipCode
-                    echo "<p>Price per Month: $" . $row['PriceForMonth'] . "</p>";
-                    echo "<p>Bedrooms: " . $row['Bedrooms'] . "</p>"; // Added Bedrooms
-                    echo "<p>Bathrooms: " . $row['Bathrooms'] . "</p>"; // Added Bathrooms
-                    echo "<p>Area: " . $row['Area'] . "</p>"; // Added Area
-                    echo "<p>Type: " . $row['Type'] . "</p>"; // Added Type
-                    echo "<p>Start Time: " . $row['StartTime'] . "</p>"; // Added StartTime
-                    echo "<p>End Time: " . $row['EndTime'] . "</p>"; // Added EndTime
-
-                    // Form with a textfield and button for sending a message to the owner of the flat
-                    echo "<button id='sendMessageButton'>Send Message</button>";
-                    echo "<div id='messageForm' style='display:none;'>";
-                    echo "<form id='messageSubmitForm' method='post'>";
-                    echo "<input type='text' id='messageInput' name='messageInput' placeholder='Enter your message' required>";
-                    echo "<button type='submit' name='sendMessage'>Submit</button>";
-                    echo "</form>";
-                    echo "</div>";
-
-                    // Handle sending message
-                    if(isset($_POST['sendMessage'])) {
-                        // Get SenderID from current session
-                        $senderUsername = $_SESSION['username'];
-                        // select the SenderID from the DB
-                        $senderIDQuery = "SELECT UserID FROM Users WHERE Username = '$senderUsername'";
-                        $senderIDResult = $conn->query($senderIDQuery);
-                        if ($senderIDResult->num_rows > 0) {
-                            $senderRow = $senderIDResult->fetch_assoc();
-                            $senderID = $senderRow['UserID'];
-
-                            // Get ReceiverID (AgentID) from the flat
-                            $receiverID = $row['AgentID'];
-
-                            // Get message text from form input
-                            $messageText = $_POST['messageInput'];
-
-                            // Insert the typed in message into Messages table
-                            $insertMessageQuery = "INSERT INTO Messages (SenderID, ReceiverID, MessageText) 
-                                                VALUES ('$senderID', '$receiverID', '$messageText')";
-                            if ($conn->query($insertMessageQuery) === TRUE) {
-                                echo "<script>alert('Message sent successfully.');</script>";
-                            } else {
-                                echo "<script>alert('Error sending message: " . $conn->error . "');</script>";
-                            }
-                        }
-                    }
-
-                    // JavaScript to toggle message form visibility
-                    echo "<script>
-                            document.getElementById('sendMessageButton').addEventListener('click', function() {
-                                document.getElementById('messageForm').style.display = 'block';
-                            });
-                        </script>";
-                } else {
-                    echo "Property not found.";
-                }
-            } else {
-                echo "Invalid property ID.";
-            }
-            $conn->close();
-        ?>
-        
-        <button class="back-button" onclick="goBack()">Go Back</button> <!-- Back button -->
-    </div>
-
-    <script>
-        function goBack() {
-            window.history.back(); // Go back to the previous page
-        }
-    </script>
-
+$conn->close();
+?>
 </body>
 </html>
