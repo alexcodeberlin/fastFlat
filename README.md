@@ -83,10 +83,8 @@ This will ensure that PHPUnit is available for testing your PHP code within the 
 1. Move or copy the project files into the XAMPP `htdocs` directory (e.g., `C:\xampp\htdocs\fastFlat` on Windows).
 2. Open your web browser and navigate to `http://localhost/fastFlat` to access the application.
 
-## Code Structure
-
-
-
+## Clean Code principles 
+The projects code follows proper and consistent naming conventions. It doesn't need a lot of comments because it is self documenting. The names for variables and functions are Intention_Revealing. My functions have sensefull argument names and they are easy to test. I use error handling with Clear Error identification and messages.
 ### ERM:
 
    Database ERM:
