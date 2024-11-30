@@ -1,0 +1,31 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch (adjust if you're using a different branch name)
+  pull_request:
+    branches:
+      - main  # Trigger on pull requests to the main branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Check out your repository's code
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2  # Set up PHP environment
+        with:
+          php-version: '8.1'  # Specify PHP version (you can adjust based on your requirements)
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev  # Example for PHP GD
+          composer install  # Install dependencies using Composer
+
+      - name: Run PHPUnit tests
+        run: vendor/bin/phpunit --configuration phpunit.xml  # Run all PHPUnit tests based on configuration
