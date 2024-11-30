@@ -6,6 +6,15 @@
         </testsuite>
     </testsuites>
     <php>
+        <!-- Set environment variable for testing environment -->
         <env name="APP_ENV" value="testing"/>
+
+        <!-- Database connection settings for testing -->
+        <env name="DB_HOST" value="127.0.0.1"/>
+        <env name="DB_USERNAME" value="root"/>
+        <env name="DB_PASSWORD" value=""/>
+        <env name="DB_NAME" value="testing_property"/>
+        <env name="DB_PORT" value="3306"/> <!-- Adjust if using a different port -->
+
     </php>
 </phpunit>
