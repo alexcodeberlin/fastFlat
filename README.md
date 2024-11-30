@@ -84,11 +84,23 @@ This will ensure that PHPUnit is available for testing your PHP code within the 
 2. Open your web browser and navigate to `http://localhost/fastFlat` to access the application.
 
 ## Clean Code principles 
-1. The projects code follows proper and consistent naming conventions. It doesn't need a lot of comments because it is self documenting. The names for variables and functions are Intention revealing. My functions have sensefull argument names and they are easy to test. 
-2. I use error handling with Clear Error identification and messages. 
-3. All nested if conditions are removed.
-3. The app is secure against sql injection.
+1. The code is well commented in each file.
+2. Well structured.
+3. The names for variables and functions are Intention revealing.
+4. The code has a minimal amount of duplication.
+5. The projects code follows proper and consistent naming conventions. It doesn't need a lot of comments because it is self documenting. 
+6. It is easy to test because it is well structured
+7. I use error handling with Clear Error identification and messages. 
+8. All nested if conditions are removed.
+9. The app is secure against sql injection.
+
+Usage of Software for cleaner code
+deepsource: For clean code and code smells
+Sonarlint:For clean code and code smells
+ 
 ### ERM:
+
+It has a minimal amount of duplication (DRY)
 
    Database ERM:
    ![ermzoom](https://github.com/alexcodeberlin/fastFlat/assets/159266599/295b4ee5-7778-4357-8163-ff69d2e16735)
