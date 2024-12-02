@@ -9,7 +9,8 @@ class PropertyFavoritesTest extends TestCase
     protected function setUp(): void
     {
         // Create a PDO connection to the test database
-        $this->pdo = new PDO('mysql:host=localhost;port=3306;dbname=testing_property;charset=utf8', 'root', '');
+        // $this->pdo = new PDO('mysql:host=localhost;port=3306;dbname=testing_property;charset=utf8', 'root', '');
+        $this->pdo = new PDO('mysql:host=127.0.0.1;port=3306;dbname=testing_property;charset=utf8', 'root', '');
 
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
