@@ -1,3 +1,17 @@
+<!-- Testing Property Addition:
+
+The testAddProperty() method verifies that a new property can be added to the database. It mocks data for property.
+Testing Invalid Input Handling:
+
+The testInvalidPropertyAddition() method checks the behavior when invalid input (e.g., missing title) is provided.
+
+The addProperty() method returns an error message, which is validated in this test case.
+
+Helper Function for Adding Properties:
+
+The tearDown() method ensures that the Properties and Users tables are cleaned after each test to maintain isolation between test cases.
+-->
+
 <?php
 
 use PHPUnit\Framework\TestCase;
