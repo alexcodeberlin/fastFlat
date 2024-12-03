@@ -1,3 +1,7 @@
+<!--
+ test the functionality of adding properties to a user's favorites. It ensures that the application behaves as expected when interacting with the database.
+-->
+
 <?php
 
 use PHPUnit\Framework\TestCase;
