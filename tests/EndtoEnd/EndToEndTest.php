@@ -1,3 +1,10 @@
+<!--
+This test contains a end-to-end test using PHPUnit and GuzzleHTTP. The test covers the complete user flow from registration to sending a message regarding a property.
+
+Test Overview
+Purpose: This End-to-End (E2E) test verifies the core user flow of the real estate web application. It simulates real user actions, from registration and login to property search, viewing property details and sending a message to an agent.
+-->
+
 <?php
 
 use GuzzleHttp\Client;
